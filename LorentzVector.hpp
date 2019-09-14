@@ -31,7 +31,7 @@ public:
 	double dot(const LorentzVector & other_vector) const;
 	double norm() const;
 	
-	void zboost(double beta);
+	void zboost(double beta);		//If |beta| > 1, this function do nothing
 	
 };
 

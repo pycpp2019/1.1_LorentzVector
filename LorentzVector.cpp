@@ -6,6 +6,9 @@
 #define LIGHT_VEL 299 792 458
 
 
+//##########___CONSTRUCTORS___#########################################################################################################
+
+
 LorentzVector::LorentzVector(): t(0), x(0), y(0), z(0) {
 
 }
@@ -19,6 +22,7 @@ LorentzVector::LorentzVector(double input_t, double input_x, double input_y, dou
 }
 
 
+//##########___GETTERS___##############################################################################################################
 
 
 double LorentzVector::get_t() const {
@@ -38,6 +42,7 @@ double LorentzVector::get_z() const {
 }
 
 
+//##########___SETTERS___##############################################################################################################
 
 
 void LorentzVector::set_t(double new_t) {
@@ -61,6 +66,7 @@ void LorentzVector::set_z(double new_z) {
 }
 
 
+//##########___OUTPUTTING_METHOD___####################################################################################################
 
 
 void LorentzVector::print() const {
@@ -70,6 +76,7 @@ void LorentzVector::print() const {
 }
 
 
+//##########___OPERATIONS___###########################################################################################################
 
 
 LorentzVector LorentzVector::add(const LorentzVector & other_vector) const {
@@ -104,9 +111,14 @@ double LorentzVector::norm() const {
 }
 
 
+//##########___CONVERSION_METHOD___####################################################################################################
 
 
-void LorentzVector::zboost(double beta) {
+void LorentzVector::zboost(double beta) {									//If |beta| > 1, this function do nothing
+	if(beta * beta > 1) {
+		return;
+	}
+
 	double gamma_factor = 1 / sqrt(1 - beta * beta);
 	double tmp_t = this->t;
 	double tmp_z = this->z;
