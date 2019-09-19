@@ -81,16 +81,16 @@ void LorentzVector::print() const {
 
 LorentzVector LorentzVector::add(const LorentzVector & other_vector) const {
 	return LorentzVector(this->t + other_vector.get_t(),\
-		this->x + other_vector.get_x,\
-		this->y + other_vector.get_y,\
-		this->z + other_vector.get_z);
+		this->x + other_vector.get_x(),\
+		this->y + other_vector.get_y(),\
+		this->z + other_vector.get_z());
 }
 
 LorentzVector LorentzVector::sub(const LorentzVector & other_vector) const {
 	return LorentzVector(this->t - other_vector.get_t(),\
-		this->x - other_vector.get_x,\
-		this->y - other_vector.get_y,\
-		this->z - other_vector.get_z);
+		this->x - other_vector.get_x(),\
+		this->y - other_vector.get_y(),\
+		this->z - other_vector.get_z());
 }
 
 LorentzVector LorentzVector::mul(double lambda) const {
@@ -101,9 +101,9 @@ LorentzVector LorentzVector::mul(double lambda) const {
 }
 
 double LorentzVector::dot(const LorentzVector & other_vector) const {
-	return (LIGHT_VEL * this->t  * LIGHT_VEL * other_vector.t -\
-		this->x * other_vector.x - this->y * other_vector.y -\
-		this->z * other_vector.z);
+	return (LIGHT_VEL * this->t  * LIGHT_VEL * other_vector.get_t() -\
+		this->x * other_vector.get_x() - this->y * other_vector.get_y() -\
+		this->z * other_vector.get_z());
 }
 
 double LorentzVector::norm() const {
