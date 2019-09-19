@@ -1,5 +1,4 @@
-#ifndef _LORENTZ_VECTOR_
-#define _LORENTZ_VECTOR_
+#pragma once
 
 class LorentzVector {
 private:
@@ -35,5 +34,3 @@ public:
 	void zboost(double beta);		//If |beta| > 1, this function do nothing
 	
 };
-
-#endif
