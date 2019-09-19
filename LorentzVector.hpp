@@ -18,10 +18,10 @@ public:
 	double get_y() const;
 	double get_z() const;
 //##########___SETTERS___##############################################################################################################
-	double set_t(double new_t);
-	double set_x(double new_x);
-	double set_y(double new_y);
-	double set_z(double new_z);
+	void set_t(double new_t);
+	void set_x(double new_x);
+	void set_y(double new_y);
+	void set_z(double new_z);
 //##########___OUTPUTTING_METHOD___####################################################################################################
 	void print() const;
 //##########___OPERATIONS___###########################################################################################################
