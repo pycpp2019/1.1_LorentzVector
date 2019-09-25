@@ -1,4 +1,6 @@
 class LorentzVector {
+private:
+    double coord[4];
 public:
     LorentzVector();
     LorentzVector(double, double, double, double);
@@ -9,10 +11,10 @@ public:
     double z() const;
     double norm() const;
 
-    void t(double x);
-    void x(double x);
-    void y(double x);
-    void z(double x);
+    void t(double);
+    void x(double);
+    void y(double);
+    void z(double);
 
     LorentzVector add(const LorentzVector& other) const;
     LorentzVector sub(const LorentzVector& other) const;
