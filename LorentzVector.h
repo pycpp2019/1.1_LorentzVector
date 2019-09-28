@@ -2,10 +2,10 @@
 
 class LorentzVector {
 private:
-	double t;
-	double x;
-	double y;
-	double z;
+	double t_coord;
+	double x_coord;
+	double y_coord;
+	double z_coord;
 
 public:
 //##########___CONSTRUCTORS___#########################################################################################################

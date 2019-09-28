@@ -1,4 +1,4 @@
-#include "LorentzVector.hpp"
+#include "LorentzVector.h"
 #include <iostream>
 #include <cmath>
 
@@ -8,16 +8,16 @@
 //##########___CONSTRUCTORS___#########################################################################################################
 
 
-LorentzVector::LorentzVector(): t(0), x(0), y(0), z(0) {
+LorentzVector::LorentzVector(): t_coord(0), x_coord(0), y_coord(0), z_coord(0) {
 
 }
 
 LorentzVector::LorentzVector(double input_t, double input_x, double input_y, double input_z) {
 
-	this->t = input_t;
-	this->x = input_x;
-	this->y = input_y;
-	this->z = input_z;
+	this->t_coord = input_t;
+	this->x_coord = input_x;
+	this->y_coord = input_y;
+	this->z_coord = input_z;
 }
 
 
@@ -25,19 +25,19 @@ LorentzVector::LorentzVector(double input_t, double input_x, double input_y, dou
 
 
 double LorentzVector::t() const {
-	return this->t;
+	return this->t_coord;
 }
 
 double LorentzVector::x() const {
-	return this->x;
+	return this->x_coord;
 }
 
 double LorentzVector::y() const {
-	return this->y;
+	return this->y_coord;
 }
 
 double LorentzVector::z() const {
-	return this->z;
+	return this->z_coord;
 }
 
 
@@ -45,22 +45,22 @@ double LorentzVector::z() const {
 
 
 void LorentzVector::t(double new_t) {
-	this->t = new_t;
+	this->t_coord = new_t;
 	return;
 }
 
 void LorentzVector::x(double new_x) {
-	this->x = new_x;
+	this->x_coord = new_x;
 	return;
 }
 
 void LorentzVector::y(double new_y) {
-	this->y = new_y;
+	this->y_coord = new_y;
 	return;
 }
 
 void LorentzVector::z(double new_z) {
-	this->z = new_z;
+	this->z_coord = new_z;
 	return;
 }
 
@@ -69,8 +69,8 @@ void LorentzVector::z(double new_z) {
 
 
 void LorentzVector::print() const {
-	std::cout << '(' << LIGHT_VEL * this->t << ';' << this->x <<\
-		';' << this->y << ';' << this->z << ')' << std::endl;
+	std::cout << '(' << this->t_coord << ';' << this->x_coord <<\
+		';' << this->y_coord << ';' << this->z_coord << ')' << std::endl;
 	return;
 }
 
@@ -78,11 +78,11 @@ void LorentzVector::print() const {
 //##########___INPUTTING_METHOD___#####################################################################################################
 
 
-void read() {
-	std::cin >> this->t;
-	std::cin >> this->x;
-	std::cin >> this->y;
-	std::cin >> this->z;
+void LorentzVector::read() {
+	std::cin >> this->t_coord;
+	std::cin >> this->x_coord;
+	std::cin >> this->y_coord;
+	std::cin >> this->z_coord;
 	return;
 }
 
@@ -91,29 +91,29 @@ void read() {
 
 
 LorentzVector LorentzVector::add(const LorentzVector & other_vector) const {
-	return LorentzVector(this->t + other_vector.t(),\
-		this->x + other_vector.x(),\
-		this->y + other_vector.y(),\
-		this->z + other_vector.z());
+	return LorentzVector(this->t_coord + other_vector.t(),\
+		this->x_coord + other_vector.x(),\
+		this->y_coord + other_vector.y(),\
+		this->z_coord + other_vector.z());
 }
 
 LorentzVector LorentzVector::sub(const LorentzVector & other_vector) const {
-	return LorentzVector(this->t - other_vector.t(),\
-		this->x - other_vector.x(),\
-		this->y - other_vector.y(),\
-		this->z - other_vector.z());
+	return LorentzVector(this->t_coord - other_vector.t(),\
+		this->x_coord - other_vector.x(),\
+		this->y_coord - other_vector.y(),\
+		this->z_coord - other_vector.z());
 }
 
 LorentzVector LorentzVector::mul(double lambda) const {
-	return LorentzVector(lambda * this->t,\
-		lambda * this->x,\
-		lambda * this->y,\
-		lambda * this->z);
+	return LorentzVector(lambda * this->t_coord,\
+		lambda * this->x_coord,\
+		lambda * this->y_coord,\
+		lambda * this->z_coord);
 }
 
 double LorentzVector::dot(const LorentzVector & other_vector) const {
-	return (this->t * other_vector.t() - this->x * other_vector.x() -\
-		this->y * other_vector.y() - this->z * other_vector.z());
+	return (this->t_coord * other_vector.t() - this->x_coord * other_vector.x() -\
+		this->y_coord * other_vector.y() - this->z_coord * other_vector.z());
 }
 
 double LorentzVector::norm() const {
@@ -130,10 +130,10 @@ void LorentzVector::zboost(double beta) {									//If |beta| > 1, this function
 	}
 
 	double gamma_factor = 1 / sqrt(1 - beta * beta);
-	double tmp_t = this->t;
-	double tmp_z = this->z;
+	double tmp_t = this->t_coord;
+	double tmp_z = this->z_coord;
 	
-	this->z = gamma_factor * (tmp_z - beta * tmp_t);
-	this->t = gamma_factor * (tmp_t - beta * tmp_z);
+	this->z_coord = gamma_factor * (tmp_z - beta * tmp_t);
+	this->t_coord = gamma_factor * (tmp_t - beta * tmp_z);
 	return;
 }
