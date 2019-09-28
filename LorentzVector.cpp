@@ -3,7 +3,6 @@
 #include <cmath>
 
 
-#define LIGHT_VEL 299792458
 
 
 //##########___CONSTRUCTORS___#########################################################################################################
@@ -101,9 +100,8 @@ LorentzVector LorentzVector::mul(double lambda) const {
 }
 
 double LorentzVector::dot(const LorentzVector & other_vector) const {
-	return (LIGHT_VEL * this->t  * LIGHT_VEL * other_vector.t() -\
-		this->x * other_vector.x() - this->y * other_vector.y() -\
-		this->z * other_vector.z());
+	return (this->t * other_vector.t() - this->x * other_vector.x() -\
+		this->y * other_vector.y() - this->z * other_vector.z());
 }
 
 double LorentzVector::norm() const {
@@ -123,7 +121,7 @@ void LorentzVector::zboost(double beta) {									//If |beta| > 1, this function
 	double tmp_t = this->t;
 	double tmp_z = this->z;
 	
-	this->z = gamma_factor * (tmp_z - beta * LIGHT_VEL * tmp_t);
-	this->t = gamma_factor * (tmp_t - beta * tmp_z / LIGHT_VEL);
+	this->z = gamma_factor * (tmp_z - beta * tmp_t);
+	this->t = gamma_factor * (tmp_t - beta * tmp_z);
 	return;
 }
