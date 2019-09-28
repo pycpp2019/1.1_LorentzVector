@@ -24,6 +24,8 @@ public:
 	void z(double new_z);
 //##########___OUTPUTTING_METHOD___####################################################################################################
 	void print() const;
+//##########___INPUTTING_METHOD___#####################################################################################################
+	void read();
 //##########___OPERATIONS___###########################################################################################################
 	LorentzVector add(const LorentzVector & other_vector) const;
 	LorentzVector sub(const LorentzVector & other_vector) const;
