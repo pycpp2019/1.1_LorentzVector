@@ -3,7 +3,6 @@
 #include <cmath>
 
 
-#define LIGHT_VEL 299792458
 
 
 //##########___CONSTRUCTORS___#########################################################################################################
@@ -25,19 +24,19 @@ LorentzVector::LorentzVector(double input_t, double input_x, double input_y, dou
 //##########___GETTERS___##############################################################################################################
 
 
-double LorentzVector::get_t() const {
+double LorentzVector::t() const {
 	return this->t;
 }
 
-double LorentzVector::get_x() const {
+double LorentzVector::x() const {
 	return this->x;
 }
 
-double LorentzVector::get_y() const {
+double LorentzVector::y() const {
 	return this->y;
 }
 
-double LorentzVector::get_z() const {
+double LorentzVector::z() const {
 	return this->z;
 }
 
@@ -45,22 +44,22 @@ double LorentzVector::get_z() const {
 //##########___SETTERS___##############################################################################################################
 
 
-void LorentzVector::set_t(double new_t) {
+void LorentzVector::t(double new_t) {
 	this->t = new_t;
 	return;
 }
 
-void LorentzVector::set_x(double new_x) {
+void LorentzVector::x(double new_x) {
 	this->x = new_x;
 	return;
 }
 
-void LorentzVector::set_y(double new_y) {
+void LorentzVector::y(double new_y) {
 	this->y = new_y;
 	return;
 }
 
-void LorentzVector::set_z(double new_z) {
+void LorentzVector::z(double new_z) {
 	this->z = new_z;
 	return;
 }
@@ -76,21 +75,33 @@ void LorentzVector::print() const {
 }
 
 
+//##########___INPUTTING_METHOD___#####################################################################################################
+
+
+void read() {
+	std::cin >> this->t;
+	std::cin >> this->x;
+	std::cin >> this->y;
+	std::cin >> this->z;
+	return;
+}
+
+
 //##########___OPERATIONS___###########################################################################################################
 
 
 LorentzVector LorentzVector::add(const LorentzVector & other_vector) const {
-	return LorentzVector(this->t + other_vector.get_t(),\
-		this->x + other_vector.get_x(),\
-		this->y + other_vector.get_y(),\
-		this->z + other_vector.get_z());
+	return LorentzVector(this->t + other_vector.t(),\
+		this->x + other_vector.x(),\
+		this->y + other_vector.y(),\
+		this->z + other_vector.z());
 }
 
 LorentzVector LorentzVector::sub(const LorentzVector & other_vector) const {
-	return LorentzVector(this->t - other_vector.get_t(),\
-		this->x - other_vector.get_x(),\
-		this->y - other_vector.get_y(),\
-		this->z - other_vector.get_z());
+	return LorentzVector(this->t - other_vector.t(),\
+		this->x - other_vector.x(),\
+		this->y - other_vector.y(),\
+		this->z - other_vector.z());
 }
 
 LorentzVector LorentzVector::mul(double lambda) const {
@@ -101,9 +112,8 @@ LorentzVector LorentzVector::mul(double lambda) const {
 }
 
 double LorentzVector::dot(const LorentzVector & other_vector) const {
-	return (LIGHT_VEL * this->t  * LIGHT_VEL * other_vector.get_t() -\
-		this->x * other_vector.get_x() - this->y * other_vector.get_y() -\
-		this->z * other_vector.get_z());
+	return (this->t * other_vector.t() - this->x * other_vector.x() -\
+		this->y * other_vector.y() - this->z * other_vector.z());
 }
 
 double LorentzVector::norm() const {
@@ -123,7 +133,7 @@ void LorentzVector::zboost(double beta) {									//If |beta| > 1, this function
 	double tmp_t = this->t;
 	double tmp_z = this->z;
 	
-	this->z = gamma_factor * (tmp_z - beta * LIGHT_VEL * tmp_t);
-	this->t = gamma_factor * (tmp_t - beta * tmp_z / LIGHT_VEL);
+	this->z = gamma_factor * (tmp_z - beta * tmp_t);
+	this->t = gamma_factor * (tmp_t - beta * tmp_z);
 	return;
 }
