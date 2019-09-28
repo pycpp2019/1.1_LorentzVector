@@ -13,15 +13,15 @@ public:
 	LorentzVector(double input_t, double input_x,\
 				double input_y, double input_z);
 //##########___GETTERS___##############################################################################################################
-	double get_t() const;
-	double get_x() const;
-	double get_y() const;
-	double get_z() const;
+	double t() const;
+	double x() const;
+	double y() const;
+	double z() const;
 //##########___SETTERS___##############################################################################################################
-	void set_t(double new_t);
-	void set_x(double new_x);
-	void set_y(double new_y);
-	void set_z(double new_z);
+	void t(double new_t);
+	void x(double new_x);
+	void y(double new_y);
+	void z(double new_z);
 //##########___OUTPUTTING_METHOD___####################################################################################################
 	void print() const;
 //##########___OPERATIONS___###########################################################################################################
