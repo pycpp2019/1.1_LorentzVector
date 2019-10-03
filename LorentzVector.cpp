@@ -4,10 +4,11 @@
 using namespace std;
 LorentzVector::LorentzVector(double a, double b, double c, double d)
 {
-  this->x1=a;
-  this->y1=b;
-  this->z1=c;
-  this->t1=d;
+  this->t1=a;
+  this->x1=b;
+  this->y1=c;
+  this->z1=d;
+  
 }
 
 LorentzVector::LorentzVector()
@@ -37,7 +38,14 @@ double LorentzVector::z() const
 
 double LorentzVector::norm() const
 {
-    return sqrt(this->x1*this->x1+this->y1*this->y1+this->z1*this->z1+this->t1*this->t1);
+    double a=(this->x1*this->x1+this->y1*this->y1+this->z1*this->z1-this->t1*this->t1);
+    if (a>=0)
+    {
+       return sqrt(a);
+    }
+    else{ 
+        return(sqrt(-a));
+        };
 }
 
 
@@ -63,14 +71,14 @@ void LorentzVector::z(double a)
 
 void LorentzVector::read()
 {
+     cout<<endl<<"t=";
+     cin >> this->t1;
     cout<<"x=";
      cin >> this->x1;
      cout<<endl<<"y=";
      cin >> this->y1;
      cout<<endl<<"z=";
      cin >> this->z1;
-     cout<<endl<<"t=";
-     cin >> this->t1;
 }
 
 LorentzVector LorentzVector::add(const LorentzVector& other) const
@@ -107,27 +115,20 @@ LorentzVector LorentzVector::mul(double a) const
 double LorentzVector::dot(const LorentzVector& other) const
 {
     double dot;
-    dot = this->x1*other.x()+this->y1*other.y()+this->z1*other.z()+this->t1*other.t();
+    dot = this->x1*other.x()+this->y1*other.y()+this->z1*other.z()-this->t1*other.t();
     return dot;
 }
 
 void LorentzVector::zboost(double beta)
 {
-    int c=3*pow(10,8);
-    double V=c*beta;
-    double gamma = 1/(sqrt(1-beta*beta));
-    double x2=gamma*(this->x1-V*this->t1);
-    this->t1=gamma*(this->t1-V*this->x1/c*c);
-    this->x1=x2;
+    double c=3*pow(10,8);
+    double z2=(this->z1-beta*this->t1)/(sqrt(1-beta*beta));
+    this->t1=(this->t1-beta*this->z1)/(sqrt(1-beta*beta));
+    this->z1=z2;
 }
 
 void LorentzVector::print() const
 {
-    cout<<"(" << this->x1 << "," << this->y1 << "," << this->z1 << "," << this->t1 << ")" << endl;
+    cout<<"(" << this->t1 << "," << this->x1 << "," << this->y1 << "," << this->z1 << ")" << endl;
 
-}
-
-int main()
-{
- return 0;
 }
