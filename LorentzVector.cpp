@@ -26,7 +26,7 @@
 			return vz;
 		}
 		double LorentzVector::norm() const { //get norm
-			return sqrt(abs(vx * vx + vy * vy + vz * vz - vt * vt));
+			return sqrt(std::abs(vx * vx + vy * vy + vz * vz - vt * vt));
 		}
 		void LorentzVector::t(double n){ //put t
 			vt=n;
