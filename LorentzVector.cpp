@@ -8,13 +8,13 @@
 		vz=0;
 		} 
 		LorentzVector::LorentzVector(double t, double x, double y, double z){ //t,x,y,z constructor
-			this->vt=t*c;
+			this->vt=t;
 			this->vx=x;
 			this->vy=y;
 			this->vz=z;
 		}
 		double LorentzVector::t() const { //get t
-			return vt/c;
+			return vt;
 		}
 		double LorentzVector::x() const { //get x
 			return vx;
@@ -26,11 +26,10 @@
 			return vz;
 		}
 		double LorentzVector::norm() const { //get norm
-			double norm=sqrt(abs(vx*vx+vy*vy+vz*vz-vt*vt));
-			return norm;
+			return sqrt(abs(vx*vx+vy*vy+vz*vz-vt*vt));
 		}
 		void LorentzVector::t(double n){ //put t
-			vt=n*c;
+			vt=n;
 		}
 		void LorentzVector::x(double n){ //put x
 			vx=n;
@@ -59,19 +58,11 @@
 		void LorentzVector::zboost(double beta){
 			double vzOld=vz;
 			vz=(vz-vt*beta)/sqrt(1-beta*beta);
-			vt=c*(vt/c-vzOld*beta/c)/sqrt(1-beta*beta);
+			vt=(vt-vzOld*beta)/sqrt(1-beta*beta);
 		}
 		void LorentzVector::print() const {
-			std::cout<<"vector:\n\n("<< vt <<", "<< vx <<", "<< vy <<", "<< vz <<")\n";
+			std::cout<<"("<< vt <<", "<< vx <<", "<< vy <<", "<< vz <<")\n";
 		} 
 		void LorentzVector::read(){
-			std::cout<<"enter vector:\n\nt=";
-			std::cin>>vt;
-			std::cout<<"\nx=";
-			std::cin>>vx;
-			std::cout<<"\ny=";
-			std::cin>>vy;
-			std::cout<<"\nz=";
-			std::cin>>vz;
-			std::cout<<"\n";		
+			std::cin>>vt>>vx>>vy>>vz;		
 		}
