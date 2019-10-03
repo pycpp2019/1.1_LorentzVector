@@ -1,5 +1,5 @@
 #include <iostream>
-#include <math.h>
+#include <cmath>
 #include "LorentzVector.h"
 		LorentzVector::LorentzVector(){ //default constructor
 		vt=0;
@@ -26,7 +26,7 @@
 			return vz;
 		}
 		double LorentzVector::norm() const { //get norm
-			return sqrt(abs(vx*vx+vy*vy+vz*vz-vt*vt));
+			return sqrt(abs(vx * vx + vy * vy + vz * vz - vt * vt));
 		}
 		void LorentzVector::t(double n){ //put t
 			vt=n;
@@ -41,15 +41,15 @@
 			vz=n;
 		}
 		LorentzVector LorentzVector::add(const LorentzVector& v2) const{ //addition
-			LorentzVector vres(vt + vt , vx + v2.vx , vy + vy , vz + v2.vz);
+			LorentzVector vres(vt + v2.t() , vx + v2.x() , vy + v2.y() , vz + v2.z());
 			return vres;
 		} 
 		LorentzVector LorentzVector::sub(const LorentzVector& v2) const{ //subtraction
-			LorentzVector vres(vt - v2.vt , vx - v2.vx , vy - vy , vz - v2.vz);
+			LorentzVector vres(vt - v2.t() , vx - v2.x() , vy - v2.y() , vz - v2.z());
 			return vres;
 		}
 		LorentzVector LorentzVector::mul(double a) const{ //multiplication by a const
-			LorentzVector vres(vt*a ,vx*a ,vy*a ,vz*a);
+			LorentzVector vres(vt * a ,vx * a ,vy * a ,vz * a);
 			return vres;
 		}
 		double LorentzVector::dot(const LorentzVector& v2) const{
