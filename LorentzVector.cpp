@@ -61,8 +61,9 @@ LorentzVector LorentzVector::mul(double a) const {
 }
 
 void LorentzVector::zboost(double beta) {
+    double t_temp = this->t_coord; 
     this->t_coord = (this->t() - this->z() * beta) / sqrt(1 - beta * beta);
-    this->z_coord = (this->z() - beta * this->t()) / sqrt(1 - beta * beta);
+    this->z_coord = (this->z() - beta * t_temp) / sqrt(1 - beta * beta);
 }
 
 double LorentzVector::dot(const LorentzVector& other) const {
