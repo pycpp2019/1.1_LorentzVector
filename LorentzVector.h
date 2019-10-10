@@ -1,4 +1,9 @@
 class LorentzVector {
+private:
+    double t_coord;
+    double x_coord;
+    double y_coord;
+    double z_coord;
 public:
     LorentzVector();
     LorentzVector(double, double, double, double);
