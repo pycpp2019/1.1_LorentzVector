@@ -39,7 +39,7 @@ return d;
 }
 
 double LorentzVector::norm() const{
-return sqrt(-(p*p)+b*b+c*c+d*d);
+return sqrt((p*p)-b*b-c*c-d*d);
 
 }
     void LorentzVector::t(double x){
@@ -73,5 +73,5 @@ return sqrt(-(p*p)+b*b+c*c+d*d);
     return third;
     }
     double LorentzVector::dot(const LorentzVector& other) const{
-    return p+other.t()+ b+other.x()+c+other.y()+d+other.z();
+    return p*other.t()- b*other.x()-c*other.y()-d+other.z();
     }
