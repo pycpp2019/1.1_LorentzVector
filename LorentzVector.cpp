@@ -1,7 +1,3 @@
-#include <iostream>
-#include <math.h>
-#include "LorentzVector.h"
-
 using namespace std;
  LorentzVector:: LorentzVector(){
         t(0);x(0); y(0);z(0);
@@ -13,7 +9,20 @@ LorentzVector::LorentzVector(double T, double X, double Y, double Z){
 double LorentzVector::t() const{
 return p;
 }
-
+void LorentzVector::zboost ( double beta ) {
+double Q = sqrt(1-beta*beta);
+double P = (p + beta*d)/Q;
+double B = b;
+double C = c;
+double D = (d + beta*d)/Q;
+p = P;
+b = B;
+c = C;
+d = D;
+}
+void LorentzVector::read(){
+cin>>p>>b>>c>>d;
+}
 double LorentzVector::x() const{
 return b;
 }
@@ -46,7 +55,7 @@ return sqrt(-(p*p)+b*b+c*c+d*d);
     this -> d = x;
     }
     void LorentzVector:: print() const {
-    cout << "LorentzVector is " << t() << ',' << x() <<','<< y() << ',' << z() << endl;
+    cout << "LorentzVector is " <<"{"<<t() << ',' << x() <<','<< y() << ',' << z() <<"}"<< endl;
     }
     LorentzVector LorentzVector :: mul (double a) const{
     LorentzVector third(p*a,b*a,c*a,d*a);
@@ -63,4 +72,3 @@ return sqrt(-(p*p)+b*b+c*c+d*d);
     double LorentzVector::dot(const LorentzVector& other) const{
     return p+other.t()+ b+other.x()+c+other.y()+d+other.z();
     }
-
