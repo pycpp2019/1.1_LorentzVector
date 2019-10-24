@@ -17,7 +17,7 @@ double Q = sqrt(1-beta*beta);
 double P = (p + beta*d)/Q;
 double B = b;
 double C = c;
-double D = (d + beta*d)/Q;
+double D = (d + beta*p)/Q;
 p = P;
 b = B;
 c = C;
@@ -58,7 +58,7 @@ return sqrt(fabs((p*p)-b*b-c*c-d*d));
     this -> d = x;
     }
     void LorentzVector:: print() const {
-    cout << "LorentzVector is " <<"{"<<t() << ',' << x() <<','<< y() << ',' << z() <<"}"<< endl;
+    cout <<"{"<<t() << ',' << x() <<','<< y() << ',' << z() <<"}"<< endl;
     }
     LorentzVector LorentzVector :: mul (double a) const{
     LorentzVector third(p*a,b*a,c*a,d*a);
@@ -73,5 +73,5 @@ return sqrt(fabs((p*p)-b*b-c*c-d*d));
     return third;
     }
     double LorentzVector::dot(const LorentzVector& other) const{
-    return p*other.t()- b*other.x()-c*other.y()-d*other.z();
+    return p*other.t()-b*other.x()-c*other.y()-d*other.z();
     }
