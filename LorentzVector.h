@@ -1,6 +1,5 @@
 class LorentzVector {
 public:
-    double p,b,c,d;
     LorentzVector();
     LorentzVector(double, double, double, double);
 
