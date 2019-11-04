@@ -72,8 +72,9 @@ double LorentzVector::norm() const
 }
 void LorentzVector::zboost(double b)
 {
+	double ct2 = ct1;
 	ct1 = (ct1 - b * z1) / sqrt(1 - b*b);
-	z1 = (z1 - b*ct1) / sqrt(1 - b*b);
+	z1 = (z1 - b*ct2) / sqrt(1 - b*b);
 }
 
 std::ostream &operator<<(std::ostream &out, const LorentzVector &v)
