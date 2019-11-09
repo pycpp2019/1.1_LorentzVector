@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cmath>
+
 using namespace std;
 
 class LorentzVector {
@@ -9,12 +10,17 @@ class LorentzVector {
     double t1;
 
 public:
-    LorentzVector(){};
+    LorentzVector(){
+         t1=0;
+         x1=0;
+         y1=0;
+         z1=0;
+    };
     LorentzVector(double x, double y, double z, double t){
-         this->t1=t;
-         this->x1=x;
-         this->y1=y;
-         this->z1=z;
+         t1=t;
+         x1=x;
+         y1=y;
+         z1=z;
     }
 
     double t () const {
@@ -46,11 +52,11 @@ public:
             t1=t;
     }
     LorentzVector add (const LorentzVector& other) const {
-        LorentzVector V(this->x()+other.x(),this->y()+other.y(),this->z()+other.z(),this->t()+other.t());
+        LorentzVector V=LorentzVector(z1+other.x(),y1+other.y(),z1+other.z(),t1+other.t());
         return V;
     }
     LorentzVector sub (const LorentzVector& other) const {
-        LorentzVector V(this->x()-other.x(),this->y()-other.y(),this->z()-other.z(),this->t()-other.t());
+        LorentzVector V(x1-other.x(),y1-other.y(),z1-other.z(),t1-other.t());
         return V;
     }
     LorentzVector mul (double a) const {
@@ -59,8 +65,9 @@ public:
     }
     void zboost (double beta) {
         double Gamma=sqrt(1-beta*beta);
-        this->z(this->z()/Gamma);
-        this->t(this->t()*Gamma);
+
+        this->z(z1*Gamma);
+        this->t(t1/Gamma);
     }
     double dot (const LorentzVector& other) const {
      return this->x()*other.x()+this->y()*other.y()+this->z()*other.z()+this->t()*other.t();
@@ -74,7 +81,8 @@ public:
         this->z(z);
     }
     void print() const {
-        cout <<this->t() << this->x() << this->y() << this->z() << endl;
+        cout <<this->t() <<" "<< this->x()<<" " << this->y()<<" " << this->z() << endl;
     }
 };
+
 
