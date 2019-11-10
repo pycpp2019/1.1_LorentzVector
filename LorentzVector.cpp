@@ -46,16 +46,34 @@ void LorentzVector:: z (double z) {
 void LorentzVector:: t (double t) {
             t1=t;
     }
-LorentzVector LorentzVector:: add (const LorentzVector& other) const {
+void LorentzVector:: operator+= (const LorentzVector& other) {
+        this->x(this->x()+other.x());
+        this->y(this->y()+other.y());
+        this->z(this->z()+other.z());
+        this->t(this->t()+other.t());
+    }
+void LorentzVector:: operator-=  (const LorentzVector& other) {
+        this->x(this->x()-other.x());
+        this->y(this->y()-other.y());
+        this->z(this->z()-other.z());
+        this->t(this->t()-other.t());
+    }
+void LorentzVector:: operator*= (double a) {
+        this->x(this->x()*a);
+        this->y(this->y()*a);
+        this->z(this->z()*a);
+        this->t(this->t()*a);
+    }
+LorentzVector LorentzVector:: operator+ (const LorentzVector& other) const {
         LorentzVector V=LorentzVector(this->t()+other.t(),this->x()+other.x(),this->y()+other.y(),this->z()+other.z());
         return V;
     }
-LorentzVector LorentzVector:: sub (const LorentzVector& other) const {
+LorentzVector LorentzVector:: operator- (const LorentzVector& other) const {
         LorentzVector V(this->t()-other.t(),this->x()-other.x(),this->y()-other.y(),this->z()-other.z());
         return V;
     }
-LorentzVector LorentzVector:: mul (double a) const {
-        LorentzVector V(this->t()*a,this->x()*a,this->y()*a,this->z()*a);
+friend LorentzVector LorentzVector:: operator* (const LorentzVector& lv, double a) const {
+        LorentzVector V(lv.t()*a,lv.x()*a,lv.y()*a,lv.z()*a);
         return V;
     }
 void LorentzVector:: zboost (double beta) {
