@@ -60,11 +60,11 @@ LorentzVector LorentzVector:: mul (double a) const {
     }
 void LorentzVector:: zboost (double beta) {
         double Gamma=1/sqrt(1-beta*beta);
-        this->z(Gamma*(this->z()-this->t()*beta));
-        this->t(Gamma*(this->t()-beta*this->z()));
+        this->z(Gamma*(this->z()+this->t()*beta));
+        this->t(Gamma*(this->t()+beta*this->z()));
     }
 double LorentzVector:: dot (const LorentzVector& other) const {
-     return this->x()*other.x()+this->y()*other.y()+this->z()*other.z()+this->t()*other.t();
+     return this->x()*other.x()+this->y()*other.y()+this->z()*other.z()-this->t()*other.t();
     }
 void LorentzVector:: read (){
         double t,x,y,z;
