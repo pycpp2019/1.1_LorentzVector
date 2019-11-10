@@ -11,8 +11,8 @@ LorentzVector::LorentzVector(){
          y1=0;
          z1=0;
     };
-LorentzVector::LorentzVector(double t, double x, double y, double z ){
-         t1=-t;
+LorentzVector::LorentzVector( double x, double y, double z,double t ){
+         t1=t;
          x1=x;
          y1=y;
          z1=z;
@@ -47,15 +47,15 @@ void LorentzVector:: t (double t) {
             t1=t;
     }
 LorentzVector LorentzVector:: add (const LorentzVector& other) const {
-        LorentzVector V=LorentzVector(t1+other.t(),z1+other.x(),y1+other.y(),z1+other.z());
+        LorentzVector V=LorentzVector(this->x()+other.x(),this->y()+other.y(),this->z()+other.z(),this->t()+other.t());
         return V;
     }
 LorentzVector LorentzVector:: sub (const LorentzVector& other) const {
-        LorentzVector V(this->t()-other.t(),this->x()-other.x(),this->y()-other.y(),this->z()-other.z());
+        LorentzVector V(this->x()-other.x(),this->y()-other.y(),this->z()-other.z()this->t()-other.t());
         return V;
     }
 LorentzVector LorentzVector:: mul (double a) const {
-        LorentzVector V(this->t()*a,this->x()*a,this->y()*a,this->z()*a);
+        LorentzVector V(this->x()*a,this->y()*a,this->z()*a,this->t()*a);
         return V;
     }
 void LorentzVector:: zboost (double beta) {
