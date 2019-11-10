@@ -78,11 +78,3 @@ void LorentzVector:: print() const {
         cout <<this->t() <<" "<< this->x()<<" " << this->y()<<" " << this->z() << endl;
     }
 
-int main(){
-    LorentzVector a=LorentzVector(1,1,1,1),b=LorentzVector(2,2,2,2);
-    cout << a.dot(b);
-
-    a.print();
-    return 0;
-}
-
