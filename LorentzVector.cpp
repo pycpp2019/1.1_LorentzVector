@@ -51,7 +51,7 @@ LorentzVector LorentzVector:: add (const LorentzVector& other) const {
         return V;
     }
 LorentzVector LorentzVector:: sub (const LorentzVector& other) const {
-        LorentzVector V(this->x()-other.x(),this->y()-other.y(),this->z()-other.z()this->t()-other.t());
+        LorentzVector V(this->x()-other.x(),this->y()-other.y(),this->z()-other.z(),this->t()-other.t());
         return V;
     }
 LorentzVector LorentzVector:: mul (double a) const {
