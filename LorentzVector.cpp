@@ -11,8 +11,8 @@ LorentzVector::LorentzVector(){
          y1=0;
          z1=0;
     };
-LorentzVector::LorentzVector(double x, double y, double z, double t){
-         t1=t;
+LorentzVector::LorentzVector(double t, double x, double y, double z ){
+         t1=-t;
          x1=x;
          y1=y;
          z1=z;
@@ -47,25 +47,24 @@ void LorentzVector:: t (double t) {
             t1=t;
     }
 LorentzVector LorentzVector:: add (const LorentzVector& other) const {
-        LorentzVector V=LorentzVector(z1+other.x(),y1+other.y(),z1+other.z(),t1+other.t());
+        LorentzVector V=LorentzVector(t1+other.t(),z1+other.x(),y1+other.y(),z1+other.z());
         return V;
     }
 LorentzVector LorentzVector:: sub (const LorentzVector& other) const {
-        LorentzVector V(this->x()-other.x(),this->y()-other.y(),this->z()-other.z(),this->t()-other.t());
+        LorentzVector V(this->t()-other.t(),this->x()-other.x(),this->y()-other.y(),this->z()-other.z());
         return V;
     }
 LorentzVector LorentzVector:: mul (double a) const {
-        LorentzVector V(this->x()*a,this->y()*a,this->z()*a,this->t()*a);
+        LorentzVector V(this->t()*a,this->x()*a,this->y()*a,this->z()*a);
         return V;
     }
 void LorentzVector:: zboost (double beta) {
-        double Gamma=sqrt(1-beta*beta);
-
-        this->z(z1*Gamma);
-        this->t(t1/Gamma);
+        double Gamma=1/sqrt(1-beta*beta);
+        this->z(Gamma*(z1-beta*t1));
+        this->t(Gamma*(t1-beta*x1));
     }
 double LorentzVector:: dot (const LorentzVector& other) const {
-     return this->x()*other.x()+this->y()*other.y()+this->z()*other.z()+this->t()*other.t();
+     return this->x()*other.x()+this->y()*other.y()+this->z()*other.z()-this->t()*other.t();
     }
 void LorentzVector:: read (){
         double t,x,y,z;
@@ -79,4 +78,11 @@ void LorentzVector:: print() const {
         cout <<this->t() <<" "<< this->x()<<" " << this->y()<<" " << this->z() << endl;
     }
 
+int main(){
+    LorentzVector a=LorentzVector(1,1,1,1),b=LorentzVector(2,2,2,2);
+    cout << a.dot(b);
+
+    a.print();
+    return 0;
+}
 
