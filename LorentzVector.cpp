@@ -1,78 +1,73 @@
 #include <iostream>
 #include <cmath>
+#include "lorentzVector.h"
 
 using namespace std;
 
-class LorentzVector {
-    double x1;
-    double y1;
-    double z1;
-    double t1;
 
-public:
-    LorentzVector(){
+LorentzVector::LorentzVector(){
          t1=0;
          x1=0;
          y1=0;
          z1=0;
     };
-    LorentzVector(double x, double y, double z, double t){
+LorentzVector::LorentzVector(double x, double y, double z, double t){
          t1=t;
          x1=x;
          y1=y;
          z1=z;
     }
 
-    double t () const {
+double LorentzVector::  t () const {
         return this->t1;
     }
-    double x () const {
+double LorentzVector:: x () const {
         return this->x1;
     }
-    double y ()const {
+double LorentzVector:: y ()const {
         return this->y1;
     }
-    double z () const {
+double LorentzVector:: z () const {
         return this->z1;
     }
-    double norm() const {
+double LorentzVector:: norm() const {
         return sqrt(fabs((this->t())*(this->t())-(this->x())*(this->x())-(this->y())*(this->y())-(this->z())*(this->z())));
     }
 
-    void x (double x) {
+void LorentzVector:: x (double x) {
             x1=x;
     }
-    void y (double y) {
+void LorentzVector:: y (double y) {
             y1=y;
     }
-    void z (double z) {
+void LorentzVector:: z (double z) {
             z1=z;
     }
-    void t (double t) {
+void LorentzVector:: t (double t) {
             t1=t;
     }
-    LorentzVector add (const LorentzVector& other) const {
+LorentzVector LorentzVector:: add (const LorentzVector& other) const {
         LorentzVector V=LorentzVector(z1+other.x(),y1+other.y(),z1+other.z(),t1+other.t());
         return V;
     }
-    LorentzVector sub (const LorentzVector& other) const {
-        LorentzVector V(x1-other.x(),y1-other.y(),z1-other.z(),t1-other.t());
+LorentzVector LorentzVector:: sub (const LorentzVector& other) const {
+        LorentzVector V(this->x()-other.x(),this->y()-other.y(),this->z()-other.z(),this->t()-other.t());
         return V;
     }
-    LorentzVector mul (double a) const {
+LorentzVector LorentzVector:: mul (double a) const {
         LorentzVector V(this->x()*a,this->y()*a,this->z()*a,this->t()*a);
         return V;
     }
-    void zboost (double beta) {
+void LorentzVector:: zboost (double beta) {
         double Gamma=sqrt(1-beta*beta);
 
         this->z(z1*Gamma);
         this->t(t1/Gamma);
     }
-    double dot (const LorentzVector& other) const {
+double LorentzVector:: dot (const LorentzVector& other) const {
      return this->x()*other.x()+this->y()*other.y()+this->z()*other.z()+this->t()*other.t();
     }
-    void read (){
+void LorentzVector:: read (){
         double t,x,y,z;
         cin >> t >> x >> y >> z;
         this->t(t);
@@ -80,9 +75,8 @@ public:
         this->y(y);
         this->z(z);
     }
-    void print() const {
+void LorentzVector:: print() const {
         cout <<this->t() <<" "<< this->x()<<" " << this->y()<<" " << this->z() << endl;
     }
-};
 
 
