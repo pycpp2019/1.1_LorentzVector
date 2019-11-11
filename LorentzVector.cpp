@@ -59,7 +59,7 @@ LorentzVector LorentzVector:: mul (double a) const {
         return V;
     }
 void LorentzVector:: zboost (double beta) {
-        z=this->z();
+        double z=this->z();
         double Gamma=1/sqrt(1-beta*beta);
         this->z(Gamma*(this->z()-this->t()*beta));
         this->t(Gamma*(this->t()-beta*z));
