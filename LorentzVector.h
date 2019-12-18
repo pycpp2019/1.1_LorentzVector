@@ -1,7 +1,11 @@
+#pragma once
+
 class LorentzVector {
+private:
+    double t1, x1, y1, z1, norm1;
 public:
     LorentzVector();
-    LorentzVector(double, double, double, double);
+    LorentzVector(double t, double x, double y, double z);
 
     double t() const;
     double x() const;
